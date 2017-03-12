@@ -87,6 +87,8 @@ From that original image, I chose 7 that had belong to the 43 classes we used to
 
 ![Web test set](images/web_test_set.png)
 
+This picture seems to be taken in a studio, so brightness and contrast are excellent. However, many of the chosen signs are overlapping with other signs and that might lead the model to misclassify them.
+
 After running those images against the trained model, the result was:
 
 Sign | Prediction | Hit
@@ -99,13 +101,13 @@ Road work Prediction | Road work | :heavy_check_mark:
 Traffic signals | Traffic signals | :heavy_check_mark:
 Children crossing | Children crossing | :heavy_check_mark:
 
-That is **6** out **7** or **85.7%** accuracy.
+That is **6** out **7** or **85.7%** accuracy. Which is down from **93.1%** for the validation set and **89.6%** from the test set, which might indicate *overfitting*.
 
 Digging down into the top five predictions for each sign:
 
 ![](images/web_test_set_prediction.png)
 
-It was a surprise that every top prediction was close to 100% of confidence. Smells like overfitting?
+It was a surprise that every top prediction was close to 100% of confidence. I wonder if this is another indicator of overfitting.
 
 ## Final Thoughts
 
@@ -114,6 +116,6 @@ The results are far from stellar and definetelly not even close to a solution th
 Some areas where I could have invested more time:
 
 * **Image pre-processing**: remove the background, leaving only the region that encompasses the sign. That should straight-forward, since all signs fall into a limited class of geometric shapes (circle, triangle, rectangle, etc). Another step of normalization, after the background removal;
-* **Model architecture**: LeNet has an incredible accuracy for a much simpler problem and it was surprising to perform reasonably well to classify trafic signs, but I could spent some time researching papers about other architectures that could perform better.
+* **Model architecture**: LeNet has an incredible accuracy for a much simpler problem and it was surprising to see it perform well to classify traffic signs, but I could spent some time researching papers about other architectures that could perform better. Also, there are indications of overfitting and we could make some improvements on the pooling steps or even add dropouts at some layers.
 
 All things considered, I am extremely satisfied to learn so much about Python (and so many libraries), while experimenting with a real world application for CNNs.
